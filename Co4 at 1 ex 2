@@ -39,3 +39,9 @@ for u, v, w in edges:
         mst_cost += w
 
 print("MST Cost =", mst_cost)
+
+
+
+
+output
+mst cost=7
