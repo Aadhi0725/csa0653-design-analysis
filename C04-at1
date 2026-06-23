@@ -8,3 +8,30 @@ graph=
 3 1 0
   excepted output
 total weight=3
+
+graph = [
+    [0, 2, 0],
+    [2, 0, 1],
+    [0, 1, 0]
+]
+
+selected = [True, False, False]
+total = 0
+
+for _ in range(len(graph) - 1):
+    m = 999
+    x = y = 0
+
+    for i in range(len(graph)):
+        if selected[i]:
+            for j in range(len(graph)):
+                if not selected[j] and graph[i][j] != 0:
+                    if graph[i][j] < m:
+                        m = graph[i][j]
+                        x, y = i, j
+
+    print(x, "-", y, "=", graph[x][y])
+    total += graph[x][y]
+    selected[y] = True
+
+print("Total Weight =", total)
