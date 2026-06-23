@@ -35,3 +35,8 @@ for _ in range(len(graph) - 1):
     selected[y] = True
 
 print("Total Weight =", total)
+
+
+
+output
+total weight =3
