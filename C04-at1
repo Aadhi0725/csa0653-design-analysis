@@ -1,0 +1,10 @@
+minimum spamming tree prim's algorithm
+  given a weighted graph,find thr minimum spanning tree using prim's algorithm
+  sample input
+graph=
+0 2 3
+2 0 1
+2 0 1
+3 1 0
+  excepted output
+total weight=3
