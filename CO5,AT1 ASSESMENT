@@ -1,1 +1,40 @@
+192521225 K Aadhi kesavan
 
+# Jobs and Employees
+jobs = ["J1", "J2", "J3"]
+employees = ["E1", "E2"]
+
+# Store assignments
+assignment = {}
+
+# Backtracking function
+def assign_job(job_index):
+    # All jobs assigned
+    if job_index == len(jobs):
+        return True
+
+    job = jobs[job_index]
+
+    # Try each employee
+    for employee in employees:
+        # Check if employee is already assigned a job
+        if employee not in assignment.values():
+
+            # Assign job
+            assignment[job] = employee
+
+            # Recursive call
+            if assign_job(job_index + 1):
+                return True
+
+            # Backtrack
+            del assignment[job]
+
+    return False
+
+if assign_job(0):
+    print("Job Assignments:")
+    for job, employee in assignment.items():
+        print(job, "->", employee)
+else:
+    print("No valid schedule found")
