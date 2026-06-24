@@ -1,1 +1,49 @@
+192521225 K aadhi kesavan
 
+# Exams and their conflicts
+graph = {
+    'Math': ['Physics', 'Chemistry'],
+    'Physics': ['Math', 'Biology'],
+    'Chemistry': ['Math'],
+    'Biology': ['Physics']
+}
+
+# Available time slots
+slots = ['Slot1', 'Slot2', 'Slot3']
+
+schedule = {}
+
+# Check if slot can be assigned
+def is_safe(exam, slot):
+    for neighbor in graph[exam]:
+        if neighbor in schedule and schedule[neighbor] == slot:
+            return False
+    return True
+
+# Backtracking function
+def timetable(exams, index):
+    if index == len(exams):
+        return True
+
+    exam = exams[index]
+
+    for slot in slots:
+        if is_safe(exam, slot):
+            schedule[exam] = slot
+
+            if timetable(exams, index + 1):
+                return True
+
+            del schedule[exam]  # Backtrack
+
+    return False
+
+# Run scheduling
+exams = list(graph.keys())
+
+if timetable(exams, 0):
+    print("Exam Timetable:")
+    for exam, slot in schedule.items():
+        print(exam, "->", slot)
+else:
+    print("No valid timetable found")
